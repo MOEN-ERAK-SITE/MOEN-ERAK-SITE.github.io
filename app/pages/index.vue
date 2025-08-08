@@ -6,13 +6,11 @@ onMounted(() => {
     const textSliderElement = textSlider.value
     let currentSet = 1
     textSliderElement.classList.add(`set-${currentSet}`)
-
     const changeSet = () => {
         textSliderElement.classList.remove(`set-${currentSet}`)
         currentSet = currentSet < 4 ? currentSet + 1 : 1
         textSliderElement.classList.add(`set-${currentSet}`)
     }
-
     setInterval(changeSet, 5000)
 })
 </script>
@@ -20,7 +18,7 @@ onMounted(() => {
 
 <template>
     <section class="hero-banner">
-        <div class="conatiner">
+        <div>
             <div class="text-slider" id="text_slider" ref="textSlider">
                 <div class="wrapper">
                     <div class="vertical-text-wrapper">
