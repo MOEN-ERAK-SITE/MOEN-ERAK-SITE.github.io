@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 const textSlider = ref(null)
+const mouseShow = ref(null)
 
 onMounted(() => {
     const textSliderElement = textSlider.value
@@ -12,17 +13,31 @@ onMounted(() => {
         textSliderElement.classList.add(`set-${currentSet}`)
     }
     setInterval(changeSet, 5000)
+
+    const handleMouseMove = (e) => {
+        if (!mouseShow.value) return
+        const x = e.clientX
+        const y = e.clientY
+        mouseShow.value.style.maskImage = `radial-gradient(circle at ${x}px ${y}px, black 5dvw, transparent 30dvw)`
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    // Clean up
+    onBeforeUnmount(() => {
+        window.removeEventListener('mousemove', handleMouseMove)
+    })
 })
 </script>
 
 
 <template>
     <section class="hero-banner">
-        <div>
+        <div id="mouse-show" ref="mouseShow"></div>
+        <div class="container h-100 d-flex flex-column justify-content-center py-3">
+            <h1 class="subtitle">What I do</h1>
             <div class="text-slider" id="text_slider" ref="textSlider">
                 <div class="wrapper">
                     <div class="vertical-text-wrapper">
-                        <span>H</span>
+                        <span id="anchorSubtitle">H</span>
                         <span>P</span>
                         <span>E</span>
                         <span>W</span>
@@ -92,6 +107,11 @@ onMounted(() => {
                     <span class="hidden">AAAAAAAAAAA</span>
                 </div>
             </div>
+            <div class="row mt-auto">
+                <div class="col-6">
+                    <h5>Hi, My name is MOEN ERAK Engineering student at RUPP 4th Years</h5>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -99,10 +119,20 @@ onMounted(() => {
 <style scoped>
 section.hero-banner {
     height: 100dvh;
-    border: 1px solid red;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    background-size: 10% 20%;
+    overflow: hidden;
+    isolation: isolate;
+
+    .subtitle {
+        margin-bottom: -5rem;
+        position: relative;
+        z-index: 1;
+        width: fit-content;
+    }
 
     .text-slider {
         --unshow: rgb(172, 172, 172);
@@ -117,7 +147,7 @@ section.hero-banner {
         overflow: hidden;
 
         span {
-            font-size: 13dvw;
+            font-size: 10dvw;
             line-height: 90%;
             color: var(--unshow);
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -420,6 +450,20 @@ section.hero-banner {
                 }
             }
         }
+    }
+
+    div#mouse-show {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-size: 10% 20%;
+        background-image: linear-gradient(to right, green 1px, transparent 1px), linear-gradient(to bottom, green 1px, transparent 1px);
+        mask-image: radial-gradient(circle at center, transparent 100%);
+        transition: .3s;
+        z-index: -1;
     }
 }
 </style>
