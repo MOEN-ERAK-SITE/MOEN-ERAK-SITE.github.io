@@ -13,5 +13,8 @@ export default defineNuxtConfig({
     },
     baseURL: '/',
   },
-  ssr: false
+  ssr: false,
+  nitro: {
+    preset: 'github_pages'
+  }
 })
