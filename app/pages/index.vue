@@ -33,7 +33,7 @@ onMounted(() => {
     <section class="hero-banner">
         <div id="mouse-show" ref="mouseShow"></div>
         <div class="container h-100 d-flex flex-column justify-content-center py-3">
-            <h1 class="subtitle">What I do</h1>
+            <h1 class="subtitle">What I fucking do</h1>
             <div class="text-slider" id="text_slider" ref="textSlider">
                 <div class="wrapper">
                     <div class="vertical-text-wrapper">
