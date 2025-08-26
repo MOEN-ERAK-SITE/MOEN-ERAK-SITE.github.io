@@ -10,6 +10,8 @@ export default defineNuxtConfig({
       script: [
         { src: '/bootstrap/bootstrap.bundle.min.js', defer: true }
       ]
-    }
-  }
+    },
+    baseURL: '/',
+  },
+  ssr: false
 })
