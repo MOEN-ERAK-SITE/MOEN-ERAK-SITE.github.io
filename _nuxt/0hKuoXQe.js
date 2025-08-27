@@ -1,0 +1,1 @@
+import{_ as o}from"./DhKtWPrM.js";import{_ as s,c as n,b as a,a as r,w as _,F as m,o as c,d as l}from"./eIE3zp0d.js";const f={};function d(i,e){const t=o;return c(),n(m,null,[a(t,{to:"/"},{default:_(()=>e[0]||(e[0]=[l("Home",-1)])),_:1,__:[0]}),e[1]||(e[1]=r("h1",null,"This is myself page",-1))],64)}const x=s(f,[["render",d]]);export{x as default};
