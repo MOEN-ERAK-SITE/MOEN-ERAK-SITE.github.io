@@ -1,178 +1,143 @@
 <script setup>
-import { ref, watch, onBeforeUnmount } from 'vue';
+import { ref } from 'vue';
 
 const isOpen = ref(false);
-const btnMenu = ref(null);
-const wrapper = ref(null);
-const navList = ref(null);
 
-let animFrameId = null;
-
-// Position navList relative to wrapper
-function updateNavListPosition() {
-  if (!wrapper.value || !navList.value) return;
-
-  const rect = wrapper.value.getBoundingClientRect();
-  navList.value.style.transform = `translate(${-rect.x}px, ${-rect.y}px)`;
-}
-
-// Keep wrapper centered on button
-function updateWrapperPosition() {
-  if (!wrapper.value || !btnMenu.value) return;
-
-  const btnRect = btnMenu.value.getBoundingClientRect();
-  const wrapperRect = wrapper.value.getBoundingClientRect();
-
-  const btnCenterX = btnRect.left + btnRect.width / 2;
-  const btnCenterY = btnRect.top + btnRect.height / 2;
-
-  const left = btnCenterX - wrapperRect.width / 2;
-  const top = btnCenterY - wrapperRect.height / 2;
-
-  wrapper.value.style.left = `${left}px`;
-  wrapper.value.style.top = `${top}px`;
-}
-
-// Animate positions each frame
-function animate() {
-  updateWrapperPosition();
-  updateNavListPosition();
-  animFrameId = requestAnimationFrame(animate);
-}
-
-// Watch open/close
-watch(isOpen, () => {
-  if (!animFrameId) animate();
-
-  // Stop animation after transition duration
-  setTimeout(() => {
-    if (animFrameId) {
-      cancelAnimationFrame(animFrameId);
-      animFrameId = null;
-      updateWrapperPosition();
-      updateNavListPosition();
-    }
-  }, 500); // adjust to your CSS transition
-});
-
-onBeforeUnmount(() => {
-  if (animFrameId) cancelAnimationFrame(animFrameId);
-});
 </script>
 
 <template>
-  <button 
-    class="btn-menu rounded-circle position-absolute end-0 top-0 m-5 p-3" 
-    :class="{ 'active': isOpen }"
-    @click="isOpen = !isOpen" 
-    ref="btnMenu"
-  >
-    <div class="burger"></div>
-  </button>
-
-  <section class="nav-menu position-fixed top-0 start-0" :class="{ 'open': isOpen }" ref="navMenu">
-    <div class="wrapper position-absolute" ref="wrapper">
-      <ul class="nav-list list-unstyled display-1 text-light" ref="navList">
-        <li><button>Placeholder</button></li>
-        <li><button>Placeholder</button></li>
-        <li><button>Placeholder</button></li>
-        <li><button>Placeholder</button></li>
-      </ul>
+  <section class="nav-menu position-fixed top-0 start-0 overflow-hidden" :class="{ 'open': isOpen }" ref="navMenu">
+    <button class="btn-menu rounded-circle position-absolute p-3" :class="{ 'active': isOpen }"
+      @click="isOpen = !isOpen" ref="btnMenu">
+      <div class="burger"></div>
+    </button>
+    <div class="wrapper position-absolute top-0 left-0 w-100 h-100">
+      <div class="container">
+        <ul class="menu-list list-unstyled">
+          <li><a class="menu-link">Home</a></li>
+          <li><a class="menu-link">Myself</a></li>
+          <li><a class="menu-link">About</a></li>
+          <li><a class="menu-link">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-button.btn-menu {
-  --gap: 250%;
-  z-index: 9999;
-  aspect-ratio: 1/1;
-  background: black;
-  border: none;
-
-  .burger {
-    width: 3rem;
-    height: 0.3rem;
-    position: relative;
-
-    &,
-    &::before,
-    &::after {
-      background-color: white;
-      border-radius: 100vmax;
-      transition: 0.3s;
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      width: 80%;
-      height: 100%;
-      right: 0%;
-    }
-
-    &::before {
-      transform: translateY(calc(var(--gap) * -1));
-    }
-
-    &::after {
-      transform: translateY(var(--gap));
-    }
-  }
-
-  &.active {
-    --gap: 0%;
-
-    .burger {
-      background: transparent;
-
-      &::before,
-      &::after {
-        background-color: white;
-        width: 100%;
-      }
-
-      &::before {
-        transform: translateY(calc(var(--gap) * -1)) rotate(45deg);
-      }
-
-      &::after {
-        transform: translateY(var(--gap)) rotate(-45deg);
-      }
-    }
-  }
-}
-
 section.nav-menu {
-  pointer-events: none;
+  --menu-border-gap: clamp(50px, 10dvw, 100px);
+
   z-index: 999;
-  transition: 0.3s;
+  transition: .3s;
   width: 100%;
   height: 100dvh;
 
-  .wrapper {
-    width: 0;
-    aspect-ratio: 1/1;
-    background-color: black;
-    border-radius: 100%;
-    transition: width 0.5s , height 0.5s;
-    overflow: hidden;
+  &,
+  * {
+    pointer-events: none;
+  }
 
-    .nav-list {
-      position: absolute;
-      width: 100dvw;
+
+  button.btn-menu {
+    --gap: 250%;
+    background-color: black;
+    z-index: 9999;
+    aspect-ratio: 1/1;
+    border: none;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    margin: var(--menu-border-gap);
+    pointer-events: all;
+
+    .burger {
+      width: 3rem;
+      height: 0.3rem;
+      position: relative;
+
+      &,
+      &::before,
+      &::after {
+        background-color: white;
+        border-radius: 100vmax;
+        transition: 0.3s;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        right: 0%;
+      }
+
+      &::before {
+        transform: translateY(calc(var(--gap) * -1));
+      }
+
+      &::after {
+        transform: translateY(var(--gap));
+      }
+    }
+
+    &.active {
+      --gap: 0%;
+
+      .burger {
+        background: transparent;
+
+        &::before,
+        &::after {
+          background-color: white;
+          width: 100%;
+        }
+
+        &::before {
+          transform: translateY(calc(var(--gap) * -1)) rotate(45deg);
+        }
+
+        &::after {
+          transform: translateY(var(--gap)) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    background-color: black;
+    mask-image: radial-gradient(circle at calc(100dvw - var(--menu-border-gap)) calc(0dvh + var(--menu-border-gap)), black 2%, transparent 0%);
+    mask-size: 100%;
+    transition: .3s;
+    pointer-events: none;
+
+    ul.menu-list {
       height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 20%;
+
+      li {
+        .menu-link {
+          color: whitesmoke;
+          font-size: 3rem;
+        }
+      }
     }
   }
 
   &.open {
-    pointer-events: all;
+
+    &,
+    * {
+      pointer-events: all;
+    }
+
+
     .wrapper {
-      width: 300dvw;
-      .nav-list {
-        opacity: 1;
-      }
+      mask-size: 20000%;
     }
   }
 }

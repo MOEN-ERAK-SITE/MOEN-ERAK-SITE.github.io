@@ -30,7 +30,7 @@ onMounted(() => {
 
 
 <template>
-    <section class="hero-banner">
+    <section class="hero-banner position-relative">
         <div id="mouse-show" ref="mouseShow"></div>
         <div class="container h-100 d-flex flex-column justify-content-center py-3">
             <h1 class="subtitle">What I fucking do</h1>
@@ -112,6 +112,9 @@ onMounted(() => {
                     <h5>Hi, My name is MOEN ERAK Engineering student at RUPP 4th Years</h5>
                 </div>
             </div>
+        </div>
+        <div class="wivy-arrow-wrapper position-absolute end-0 bottom-0">
+            <img src="~/assets/images/ui/wivy-arrow.svg"></img>
         </div>
     </section>
 </template>
@@ -465,5 +468,38 @@ section.hero-banner {
         transition: .3s;
         z-index: -1;
     }
+
+    .wivy-arrow-wrapper {
+        --bg-color: var(--bs-secondary);
+        --animation-move-scale: 10px;
+        width: clamp(150px, 40dvw, 500px);
+        background-color: var(--bg-color);
+        mask-image: url('~/assets/images/ui/wivy-arrow.svg');
+        mask-size: 100% 100%;
+        animation: wivy-arrow-move 3s infinite ease-in-out alternate;
+        img {
+            width: 100%;
+            opacity: 0;
+        }
+    }
 }
+
+@keyframes wivy-arrow-move {
+    0% {
+        transform: translate(var(--animation-move-scale) , var(--animation-move-scale));
+    }
+    25% {
+        transform: translate(calc(-1 * var(--animation-move-scale)) , calc(-1 * var(--animation-move-scale)));
+    }
+    50% {
+        transform: translate(calc(-1 * var(--animation-move-scale)) , var(--animation-move-scale));
+    }
+    75% {
+        transform: translate(var(--animation-move-scale) , calc(-1 * var(--animation-move-scale)));
+    }
+    100% {
+        transform: translate(var(--animation-move-scale) , var(--animation-move-scale));
+    }
+}
+
 </style>
