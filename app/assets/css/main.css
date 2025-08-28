@@ -1,3 +1,2 @@
-:root {
-    --color-primary: #ff0000;
-}
+@import "./root_font_sizes.css";
+@import "./root_colors.css";

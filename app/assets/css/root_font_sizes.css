@@ -1,0 +1,94 @@
+:root {
+    /* Base sizes */
+    --font-size-base-pc: 1rem;
+    /* 16px typical desktop */
+    --font-size-base-mobile: 0.8rem;
+    /* 14px typical mobile */
+    --scale-ratio: 1.25;
+    /* modular scale ratio */
+
+    /* Semantic scales */
+    --scale-0: 1;
+    /* base */
+    --scale-sm: calc(var(--scale-0) * var(--scale-ratio));
+    --scale-md: calc(var(--scale-sm) * var(--scale-ratio));
+    --scale-lg: calc(var(--scale-md) * var(--scale-ratio));
+    --scale-xl: calc(var(--scale-lg) * var(--scale-ratio));
+    --scale-2xl: calc(var(--scale-xl) * var(--scale-ratio));
+    --scale-3xl: calc(var(--scale-2xl) * var(--scale-ratio));
+    --scale-4xl: calc(var(--scale-3xl) * var(--scale-ratio));
+    --scale-5xl: calc(var(--scale-4xl) * var(--scale-ratio));
+
+    /* Font sizes using clamp() and semantic scales */
+    --font-size-sm: clamp(calc(var(--font-size-base-mobile) / var(--scale-ratio)),
+            1.5dvw,
+            calc(var(--font-size-base-pc) / var(--scale-ratio)));
+
+    --font-size-base: clamp(var(--font-size-base-mobile), 1dvw, var(--font-size-base-pc));
+
+    --font-size-md: clamp(calc(var(--font-size-base-pc) * var(--scale-sm)),
+            1.5dvw,
+            calc(var(--font-size-base-pc) * var(--scale-md)));
+
+    --font-size-lg: clamp(calc(var(--font-size-base-pc) * var(--scale-md)),
+            2dvw,
+            calc(var(--font-size-base-pc) * var(--scale-lg)));
+
+    --font-size-xl: clamp(calc(var(--font-size-base-pc) * var(--scale-lg)),
+            4dvw,
+            calc(var(--font-size-base-pc) * var(--scale-xl)));
+
+    --font-size-2xl: clamp(calc(var(--font-size-base-pc) * var(--scale-xl)),
+            5dvw,
+            calc(var(--font-size-base-pc) * var(--scale-2xl)));
+
+    --font-size-3xl: clamp(calc(var(--font-size-base-pc) * var(--scale-2xl)),
+            6dvw,
+            calc(var(--font-size-base-pc) * var(--scale-3xl)));
+
+    --font-size-4xl: clamp(calc(var(--font-size-base-pc) * var(--scale-3xl)),
+            7dvw,
+            calc(var(--font-size-base-pc) * var(--scale-4xl)));
+
+    --font-size-5xl: clamp(calc(var(--font-size-base-pc) * var(--scale-4xl)),
+            8dvw,
+            calc(var(--font-size-base-pc) * var(--scale-5xl)));
+}
+
+
+/* Utility classes */
+.font-size-sm {
+    font-size: var(--font-size-sm);
+}
+
+.font-size-base {
+    font-size: var(--font-size-base);
+}
+
+.font-size-md {
+    font-size: var(--font-size-md);
+}
+
+.font-size-lg {
+    font-size: var(--font-size-lg);
+}
+
+.font-size-xl {
+    font-size: var(--font-size-xl);
+}
+
+.font-size-2xl {
+    font-size: var(--font-size-2xl);
+}
+
+.font-size-3xl {
+    font-size: var(--font-size-3xl);
+}
+
+.font-size-4xl {
+    font-size: var(--font-size-4xl);
+}
+
+.font-size-5xl {
+    font-size: var(--font-size-5xl);
+}

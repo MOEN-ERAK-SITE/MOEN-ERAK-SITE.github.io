@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 
-const isOpen = ref(false);
+const isOpen = ref(true);
 
 </script>
 
@@ -12,14 +13,38 @@ const isOpen = ref(false);
       <div class="burger"></div>
     </button>
     <div class="wrapper position-absolute top-0 left-0 w-100 h-100">
-      <div class="container">
-        <ul class="menu-list list-unstyled">
-          <li><a class="menu-link">Home</a></li>
-          <li><a class="menu-link">Myself</a></li>
-          <li><a class="menu-link">About</a></li>
-          <li><a class="menu-link">Contact</a></li>
-        </ul>
-      </div>
+      <h1 class="text-light">Another thing</h1>
+      <ul class="menu-list list-unstyled">
+        <li @click="isOpen = !isOpen">
+          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '/' }">
+            <div class="nav-arrow">
+            </div>
+            <span>Home</span>
+          </RouterLink>
+        </li>
+        <li @click="isOpen = !isOpen">
+          <RouterLink to="/myself" class="menu-link" :class="{ 'active': $route.path === '/myself' }">
+            <div class="nav-arrow">
+            </div>
+            <span>Myself</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
+            <div class="nav-arrow">
+            </div>
+            <span>About</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
+            <div class="nav-arrow">
+            </div>
+            <span>Contact</span>
+          </RouterLink>
+        </li>
+      </ul>
+      <h2 class="text-light">Another thing</h2>
     </div>
   </section>
 </template>
@@ -109,20 +134,45 @@ section.nav-menu {
     background-color: black;
     mask-image: radial-gradient(circle at calc(100dvw - var(--menu-border-gap)) calc(0dvh + var(--menu-border-gap)), black 2%, transparent 0%);
     mask-size: 100%;
-    transition: .3s;
+    transition: .5s cubic-bezier(1, 0, 0, 1);
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    --left-gap: clamp(10px, 20dvw, 200px);
+
 
     ul.menu-list {
-      height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      margin-left: 20%;
+      row-gap: 1rem;
 
       li {
         .menu-link {
           color: whitesmoke;
-          font-size: 3rem;
+          font-size: var(--font-size-3xl);
+          text-decoration: none;
+          font-weight: bolder;
+          letter-spacing: .2rem;
+          line-height: 100%;
+          display: flex;
+          /* border: 1px solid red; */
+          column-gap: 2rem;
+          & , * {
+            transition: .3s;
+          }
+
+
+          .nav-arrow {
+            width: var(--left-gap);
+            min-height: 100%;
+          }
+
+          &.active {
+            .nav-arrow {
+              background-color: greenyellow;
+            }
+          }
         }
       }
     }
