@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-const isOpen = ref(true);
+const isOpen = ref(false);
 
 </script>
 

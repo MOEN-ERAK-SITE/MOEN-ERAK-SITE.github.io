@@ -1,3 +1,20 @@
+/** 
+ * Font size variables using clamp() for responsive scaling.
+ * Values are based on the following table:
+ * 
+ * Font Size | Minimum (px) | Maximum (px)
+ * ----------|--------------|-------------
+ * sm        |   10.24      |   12.8
+ * base      |   12.8       |   16.0
+ * md        |   20.0       |   25.0
+ * lg        |   25.0       |   31.25
+ * xl        |   31.25      |   39.06
+ * 2xl       |   39.06      |   48.83
+ * 3xl       |   48.83      |   61.04
+ * 4xl       |   61.04      |   76.29
+ * 5xl       |   76.29      |   95.37
+ */
+
 :root {
     /* Base sizes */
     --font-size-base-pc: 1rem;
@@ -24,10 +41,10 @@
             1.5dvw,
             calc(var(--font-size-base-pc) / var(--scale-ratio)));
 
-    --font-size-base: clamp(var(--font-size-base-mobile), 1dvw, var(--font-size-base-pc));
+    --font-size-base: clamp(var(--font-size-base-mobile), 2dvw, var(--font-size-base-pc));
 
     --font-size-md: clamp(calc(var(--font-size-base-pc) * var(--scale-sm)),
-            1.5dvw,
+            2dvw,
             calc(var(--font-size-base-pc) * var(--scale-md)));
 
     --font-size-lg: clamp(calc(var(--font-size-base-pc) * var(--scale-md)),
@@ -35,7 +52,7 @@
             calc(var(--font-size-base-pc) * var(--scale-lg)));
 
     --font-size-xl: clamp(calc(var(--font-size-base-pc) * var(--scale-lg)),
-            4dvw,
+            2.5dvw,
             calc(var(--font-size-base-pc) * var(--scale-xl)));
 
     --font-size-2xl: clamp(calc(var(--font-size-base-pc) * var(--scale-xl)),
