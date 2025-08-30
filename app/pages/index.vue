@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { Icon } from '@iconify/vue'
 const textSlider = ref(null)
 const mouseShow = ref(null)
 
@@ -33,7 +34,7 @@ onMounted(() => {
     <section class="hero-banner position-relative">
         <div id="mouse-show" ref="mouseShow"></div>
         <div class="container h-100 d-flex flex-column justify-content-center py-3">
-            <h1 class="subtitle">What I fucking do</h1>
+            <h3 class="subtitle">What I do <Icon icon="proicons:arrow-enter" width="24" height="24" style="transform: rotate(-90deg);"/></h3>
             <div class="text-slider" id="text_slider" ref="textSlider">
                 <div class="wrapper">
                     <div class="vertical-text-wrapper">
@@ -113,9 +114,9 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <div class="wivy-arrow-wrapper position-absolute end-0 bottom-0">
+        <!-- <div class="wivy-arrow-wrapper position-absolute end-0 bottom-0">
             <img src="~/assets/images/ui/wivy-arrow.svg"></img>
-        </div>
+        </div> -->
     </section>
 </template>
 
@@ -135,6 +136,9 @@ section.hero-banner {
         position: relative;
         z-index: 1;
         width: fit-content;
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        color: var(--bs-secondary);
     }
 
     .text-slider {
@@ -146,14 +150,15 @@ section.hero-banner {
         position: relative;
         display: flex;
         isolation: isolate;
-        mask-image: linear-gradient(to bottom, transparent 10%, red 50%, transparent 90%);
+        mask-image: linear-gradient(to bottom, transparent 20%, black 40% , black 60%, transparent 80%);
         overflow: hidden;
 
         span {
-            font-size: 10dvw;
-            line-height: 90%;
+            font-size: 16dvw;
+            line-height: .80;
+            font-weight: 900;
             color: var(--unshow);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: monospace;
             transition: 1s;
         }
 
@@ -171,7 +176,6 @@ section.hero-banner {
                 position: relative;
                 transition: 1s ease-in-out;
                 transform: translateY(calc(-100% / var(--number-of-line) * 1));
-
                 span {
                     text-align: center;
                 }

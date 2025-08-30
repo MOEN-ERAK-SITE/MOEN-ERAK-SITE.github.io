@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { Icon } from '@iconify/vue';
 
-const isOpen = ref(false);
+const isOpen = ref(true);
 
 </script>
 
@@ -14,36 +15,58 @@ const isOpen = ref(false);
     </button>
     <div class="wrapper position-absolute top-0 left-0 w-100 h-100">
       <h1 class="text-light">Another thing</h1>
-      <ul class="menu-list list-unstyled">
-        <li @click="isOpen = !isOpen">
-          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '/' }">
-            <div class="nav-arrow">
-            </div>
-            <span>Home</span>
-          </RouterLink>
-        </li>
-        <li @click="isOpen = !isOpen">
-          <RouterLink to="/myself" class="menu-link" :class="{ 'active': $route.path === '/myself' }">
-            <div class="nav-arrow">
-            </div>
-            <span>Myself</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
-            <div class="nav-arrow">
-            </div>
-            <span>About</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
-            <div class="nav-arrow">
-            </div>
-            <span>Contact</span>
-          </RouterLink>
-        </li>
-      </ul>
+      <div class="d-flex justify-content-between flex-column flex-md-row">
+        <ul class="menu-list list-unstyled">
+          <li @click="isOpen = !isOpen">
+            <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '/' }">
+              <div class="nav-arrow">
+              </div>
+              <span>Home</span>
+            </RouterLink>
+          </li>
+          <li @click="isOpen = !isOpen">
+            <RouterLink to="/myself" class="menu-link" :class="{ 'active': $route.path === '/myself' }">
+              <div class="nav-arrow">
+              </div>
+              <span>Myself</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
+              <div class="nav-arrow">
+              </div>
+              <span>About</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/" class="menu-link" :class="{ 'active': $route.path === '' }">
+              <div class="nav-arrow">
+              </div>
+              <span>Contact</span>
+            </RouterLink>
+          </li>
+        </ul>
+        <div class="nav-contact me-md-5">
+          <a target="_blank" href="https://github.com/MOEN-ERAK" class="contact-item">
+            <Icon icon="mingcute:github-fill" width="35" height="35" class="icon" />
+            <span>MOEN-ERAK</span>
+          </a>
+          <a target="_blank" href="mailto:raknosmoke000@gmail.com" class="contact-item">
+            <Icon icon="skill-icons:gmail-light" width="35" height="35" class="icon" />
+            <span>Email link
+              <Icon icon="lets-icons:copy-light" width="24" height="24" />
+            </span>
+          </a>
+          <a target="_blank" href="https://www.facebook.com/rak.nosmoke.1/" class="contact-item">
+            <Icon icon="logos:facebook" width="35" height="35" class="icon" />
+            <span>Rak Acoustïc</span>
+          </a>
+          <a target="_blank" href="https://t.me/MOENERAK" class="contact-item">
+            <Icon icon="logos:telegram" width="35" height="35" class="icon" />
+            <span>@MOENERAK</span>
+          </a>
+        </div>
+      </div>
       <h2 class="text-light">Another thing</h2>
     </div>
   </section>
@@ -158,7 +181,9 @@ section.nav-menu {
           display: flex;
           /* border: 1px solid red; */
           column-gap: 2rem;
-          & , * {
+
+          &,
+          * {
             transition: .3s;
           }
 
@@ -171,6 +196,62 @@ section.nav-menu {
           &.active {
             .nav-arrow {
               background-color: greenyellow;
+            }
+          }
+        }
+      }
+    }
+
+    .nav-contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: calc(var(--font-size-sm) - .5rem);
+      height: 100%;
+
+      .contact-item {
+        aspect-ratio: 1/1;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        row-gap: var(--font-size-sm);
+        font-size: var(--font-size-sm);
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        background-color: hsl(from var(--bs-light) h s l / .2);
+
+        img {
+          width: var(--font-size-xl);
+        }
+
+        .icon , span {
+          transition: .2s;
+        }
+
+        &:hover {
+          box-shadow: 0 0 0 .03rem white;
+
+          .icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 1.5rem greenyellow) drop-shadow(0 0 .3rem greenyellow);
+          }
+          span {
+            filter: drop-shadow(0 0 .5rem white);
+          }
+
+          &:nth-child(3) {
+            .icon {
+              filter: drop-shadow(0 0 1.5rem blue) drop-shadow(0 0 .3rem blue);
+            }
+          }
+
+          &:nth-child(4) {
+            .icon {
+              filter: drop-shadow(0 0 1.5rem teal) drop-shadow(0 0 .3rem teal);
             }
           }
         }
@@ -189,6 +270,12 @@ section.nav-menu {
     .wrapper {
       mask-size: 20000%;
     }
+  }
+}
+
+@keyframes border-rotate {
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>

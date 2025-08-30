@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@nuxt/ui'],
+  modules: ['@nuxt/image', '@nuxt/ui', '@nuxt/icon'],
   css: ['bootstrap/dist/css/bootstrap.min.css', '~/assets/css/main.css'],
   app: {
     head: {
