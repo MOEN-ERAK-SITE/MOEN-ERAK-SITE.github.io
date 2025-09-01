@@ -1,0 +1,1 @@
+import{_ as t,c as o,a as s,o as n}from"./D1Wmcovz.js";const a={},c={class:"orbit-container"};function r(i,e){return n(),o("div",c,e[0]||(e[0]=[s("div",{class:"orbiting-element"}," ⭐ ",-1)]))}const d=t(a,[["render",r],["__scopeId","data-v-f44b7858"]]);export{d as default};
