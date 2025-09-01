@@ -4,16 +4,43 @@ import { Icon } from '@iconify/vue'
 const textSlider = ref(null)
 const mouseShow = ref(null)
 
-onMounted(() => {
+let setIntervalId = null
+
+function onChangeSet(currentSet = 1) {
     const textSliderElement = textSlider.value
-    let currentSet = 1
+    if (!textSliderElement) return
+    textSliderElement.classList.forEach(cls => {
+        if (cls.startsWith('set-')) {
+            textSliderElement.classList.remove(cls)
+        }
+    })
+    if (setIntervalId) {
+        clearInterval(setIntervalId)
+        setIntervalId = null
+    }
     textSliderElement.classList.add(`set-${currentSet}`)
     const changeSet = () => {
-        textSliderElement.classList.remove(`set-${currentSet}`)
+        textSliderElement.classList.forEach(cls => {
+            if (cls.startsWith('set-')) {
+                textSliderElement.classList.remove(cls)
+            }
+        })
         currentSet = currentSet < 4 ? currentSet + 1 : 1
         textSliderElement.classList.add(`set-${currentSet}`)
     }
-    setInterval(changeSet, 5000)
+    setIntervalId = setInterval(changeSet, 3000)
+}
+
+
+onMounted(() => {
+
+    onChangeSet()
+
+    var subtitle = document.querySelector('.subtitle[role*="button"]');
+    subtitle.classList.add('hover')
+    setTimeout(() => {
+        subtitle.classList.remove('hover')
+    }, 2000);
 
     const handleMouseMove = (e) => {
         if (!mouseShow.value) return
@@ -27,14 +54,19 @@ onMounted(() => {
         window.removeEventListener('mousemove', handleMouseMove)
     })
 })
+
 </script>
 
 
 <template>
     <section class="hero-banner position-relative">
         <div id="mouse-show" ref="mouseShow"></div>
-        <div class="container h-100 d-flex flex-column justify-content-center py-3">
-            <h3 class="subtitle">What I do <Icon icon="proicons:arrow-enter" width="24" height="24" style="transform: rotate(-90deg);"/></h3>
+        <div class="container-fluid h-100 d-flex flex-column justify-content-center py-3">
+            <h3 class="subtitle position-absolute top-0 start-0 btn" style="margin: 5dvw;" role="button"
+                @click="onChangeSet(2)">
+                <span>What I</span> <span class="non-job">can</span><span>do</span>
+                <Icon icon="proicons:arrow-enter" width="24" height="24" style="transform: rotate(-90deg);" />
+            </h3>
             <div class="text-slider" id="text_slider" ref="textSlider">
                 <div class="wrapper">
                     <div class="vertical-text-wrapper">
@@ -103,9 +135,9 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="hidden-wrapper">
-                    <span class="hidden">AAAAAAAAAAA</span>
-                    <span class="hidden">AAAAAAAAAAA</span>
-                    <span class="hidden">AAAAAAAAAAA</span>
+                    <span class="hidden">ABCDEFGR</span>
+                    <span class="hidden">ABCDEFGR</span>
+                    <span class="hidden">ABCDEFGR</span>
                 </div>
             </div>
             <div class="row mt-auto">
@@ -130,36 +162,75 @@ section.hero-banner {
     background-size: 10% 20%;
     overflow: hidden;
     isolation: isolate;
+    background-color: var(--bs-dark);
 
     .subtitle {
-        margin-bottom: -5rem;
+        margin-bottom: -3dvw;
         position: relative;
         z-index: 1;
-        width: fit-content;
         font-size: var(--font-size-xl);
         font-weight: 700;
-        color: var(--bs-secondary);
+        color: var(--bs-light);
+
+        &:hover,
+        &.hover {
+            background-color: greenyellow;
+            color: black;
+            backdrop-filter: blur(5px);
+            border-radius: 0;
+
+            .non-job {
+                width: calc(var(--font-size-xl) * 2) !important;
+            }
+
+            &::before {
+                content: 'Switch ';
+            }
+
+            &::after {
+                content: 'And what I do';
+            }
+        }
+    }
+
+    .non-job {
+        display: inline-flex;
+        overflow: hidden;
+        width: calc(var(--font-size-xl) * 2);
+        transition: .2s;
+    }
+
+    &:has(.text-slider.set-2) {
+        .non-job {
+            width: 0;
+        }
     }
 
     .text-slider {
         --unshow: rgb(172, 172, 172);
-        --show: black;
+        --show: greenyellow;
         --number-of-line: 6;
 
         width: fit-content;
+        min-height: fit-content;
         position: relative;
         display: flex;
         isolation: isolate;
-        mask-image: linear-gradient(to bottom, transparent 20%, black 40% , black 60%, transparent 80%);
+        mask-image: linear-gradient(to bottom, transparent 20%, hsl(from black h s l / .2), black 35%, black 65%, hsl(from black h s l / .2), transparent 80%);
         overflow: hidden;
 
         span {
-            font-size: 16dvw;
-            line-height: .80;
+            font-size: 22.6dvw;
             font-weight: 900;
+            line-height: .75;
             color: var(--unshow);
             font-family: monospace;
-            transition: 1s;
+            transition: transform 1s, color 1s;
+            letter-spacing: -0.2rem;
+
+            &:hover {
+                font-style: italic;
+            }
         }
 
         .wrapper {
@@ -176,6 +247,7 @@ section.hero-banner {
                 position: relative;
                 transition: 1s ease-in-out;
                 transform: translateY(calc(-100% / var(--number-of-line) * 1));
+
                 span {
                     text-align: center;
                 }
@@ -186,6 +258,7 @@ section.hero-banner {
             display: flex;
             flex-direction: column;
             position: relative;
+            pointer-events: none;
 
             .hidden {
                 opacity: 0;
@@ -466,7 +539,7 @@ section.hero-banner {
         top: 0;
         left: 0;
         pointer-events: none;
-        background-size: 10% 20%;
+        background-size: 10dvw 10dvw;
         background-image: linear-gradient(to right, green 1px, transparent 1px), linear-gradient(to bottom, green 1px, transparent 1px);
         mask-image: radial-gradient(circle at center, transparent 100%);
         transition: .3s;
@@ -481,6 +554,7 @@ section.hero-banner {
         mask-image: url('~/assets/images/ui/wivy-arrow.svg');
         mask-size: 100% 100%;
         animation: wivy-arrow-move 3s infinite ease-in-out alternate;
+
         img {
             width: 100%;
             opacity: 0;
@@ -490,20 +564,23 @@ section.hero-banner {
 
 @keyframes wivy-arrow-move {
     0% {
-        transform: translate(var(--animation-move-scale) , var(--animation-move-scale));
+        transform: translate(var(--animation-move-scale), var(--animation-move-scale));
     }
+
     25% {
-        transform: translate(calc(-1 * var(--animation-move-scale)) , calc(-1 * var(--animation-move-scale)));
+        transform: translate(calc(-1 * var(--animation-move-scale)), calc(-1 * var(--animation-move-scale)));
     }
+
     50% {
-        transform: translate(calc(-1 * var(--animation-move-scale)) , var(--animation-move-scale));
+        transform: translate(calc(-1 * var(--animation-move-scale)), var(--animation-move-scale));
     }
+
     75% {
-        transform: translate(var(--animation-move-scale) , calc(-1 * var(--animation-move-scale)));
+        transform: translate(var(--animation-move-scale), calc(-1 * var(--animation-move-scale)));
     }
+
     100% {
-        transform: translate(var(--animation-move-scale) , var(--animation-move-scale));
+        transform: translate(var(--animation-move-scale), var(--animation-move-scale));
     }
 }
-
 </style>
