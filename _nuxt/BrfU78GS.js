@@ -1,0 +1,1 @@
+import{_ as c,c as n,a as s,o as t}from"./CQnYRB_-.js";const o={};function a(l,e){return t(),n("main",null,e[0]||(e[0]=[s("section",{class:"section-1"},null,-1),s("section",{class:"section-2"},null,-1),s("section",{class:"section-3"},null,-1)]))}const i=c(o,[["render",a],["__scopeId","data-v-94cc7232"]]);export{i as default};
