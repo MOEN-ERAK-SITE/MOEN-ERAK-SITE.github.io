@@ -59,100 +59,108 @@ onMounted(() => {
 
 
 <template>
-    <section class="hero-banner position-relative">
-        <div id="mouse-show" ref="mouseShow"></div>
-        <div class="container-fluid h-100 d-flex flex-column justify-content-center py-3">
-            <h3 class="subtitle position-absolute top-0 start-0 btn" style="margin: 5dvw;" role="button"
-                @click="onChangeSet(2)">
-                <span>What I</span> <span class="non-job">can</span><span>do</span>
-                <Icon icon="proicons:arrow-enter" width="24" height="24" style="transform: rotate(-90deg);" />
-            </h3>
-            <div class="text-slider" id="text_slider" ref="textSlider">
-                <div class="wrapper">
-                    <div class="vertical-text-wrapper">
-                        <span id="anchorSubtitle">H</span>
-                        <span>P</span>
-                        <span>E</span>
-                        <span>W</span>
-                        <span>A</span>
-                        <span>R</span>
+    <main>
+        <section class="hero-banner position-relative">
+            <div id="mouse-show" ref="mouseShow"></div>
+            <div class="container-fluid h-100 d-flex flex-column justify-content-center py-3 bg-transparent">
+                <h3 class="subtitle position-absolute top-0 start-0 btn" style="margin: 5dvw;" role="button"
+                    @click="onChangeSet(2)">
+                    <span>What I</span> <span class="non-job">can</span><span>do</span>
+                    <Icon icon="proicons:arrow-enter" width="24" height="24" style="transform: rotate(-90deg);" />
+                </h3>
+                <div class="text-slider" id="text_slider" ref="textSlider">
+                    <div class="wrapper">
+                        <div class="vertical-text-wrapper">
+                            <span id="anchorSubtitle">H</span>
+                            <span>P</span>
+                            <span>E</span>
+                            <span>W</span>
+                            <span>A</span>
+                            <span>R</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>B</span>
+                            <span>N</span>
+                            <span>R</span>
+                            <span>N</span>
+                            <span>E</span>
+                            <span>W</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>G</span>
+                            <span>B</span>
+                            <span>G</span>
+                            <span>O</span>
+                            <span>A</span>
+                            <span>R</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>R</span>
+                            <span>D</span>
+                            <span>G</span>
+                            <span>I</span>
+                            <span>L</span>
+                            <span>T</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>H</span>
+                            <span>Y</span>
+                            <span>N</span>
+                            <span>R</span>
+                            <span>E</span>
+                            <span>O</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>M</span>
+                            <span>V</span>
+                            <span>A</span>
+                            <span>E</span>
+                            <span>Z</span>
+                            <span>O</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>S</span>
+                            <span>O</span>
+                            <span>E</span>
+                            <span>M</span>
+                            <span>E</span>
+                            <span>N</span>
+                        </div>
+                        <div class="vertical-text-wrapper">
+                            <span>R</span>
+                            <span>P</span>
+                            <span>S</span>
+                            <span>R</span>
+                            <span>R</span>
+                            <span>O</span>
+                        </div>
                     </div>
-                    <div class="vertical-text-wrapper">
-                        <span>B</span>
-                        <span>N</span>
-                        <span>R</span>
-                        <span>N</span>
-                        <span>E</span>
-                        <span>W</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>G</span>
-                        <span>B</span>
-                        <span>G</span>
-                        <span>O</span>
-                        <span>A</span>
-                        <span>R</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>R</span>
-                        <span>D</span>
-                        <span>G</span>
-                        <span>I</span>
-                        <span>L</span>
-                        <span>T</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>H</span>
-                        <span>Y</span>
-                        <span>N</span>
-                        <span>R</span>
-                        <span>E</span>
-                        <span>O</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>M</span>
-                        <span>V</span>
-                        <span>A</span>
-                        <span>E</span>
-                        <span>Z</span>
-                        <span>O</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>S</span>
-                        <span>O</span>
-                        <span>E</span>
-                        <span>M</span>
-                        <span>E</span>
-                        <span>N</span>
-                    </div>
-                    <div class="vertical-text-wrapper">
-                        <span>R</span>
-                        <span>P</span>
-                        <span>S</span>
-                        <span>R</span>
-                        <span>R</span>
-                        <span>O</span>
+                    <div class="hidden-wrapper">
+                        <span class="hidden">ABCDEFGR</span>
+                        <span class="hidden">ABCDEFGR</span>
+                        <span class="hidden">ABCDEFGR</span>
                     </div>
                 </div>
-                <div class="hidden-wrapper">
-                    <span class="hidden">ABCDEFGR</span>
-                    <span class="hidden">ABCDEFGR</span>
-                    <span class="hidden">ABCDEFGR</span>
+                <div class="row mt-auto">
+                    <div class="col-6">
+                        <h5>Hi, My name is MOEN ERAK Engineering student at RUPP 4th Years</h5>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-auto">
-                <div class="col-6">
-                    <h5>Hi, My name is MOEN ERAK Engineering student at RUPP 4th Years</h5>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="wivy-arrow-wrapper position-absolute end-0 bottom-0">
-            <img src="~/assets/images/ui/wivy-arrow.svg"></img>
-        </div> -->
-    </section>
+        </section>
+        <section class="random-photos">
+
+        </section>
+    </main>
 </template>
 
 <style scoped>
+
+main {
+    --dynamic-background-color: var(--color-secondary);
+    background-color: var(--dynamic-background-color);
+}
+
 section.hero-banner {
     height: 100dvh;
     display: flex;
@@ -162,7 +170,6 @@ section.hero-banner {
     background-size: 10% 20%;
     overflow: hidden;
     isolation: isolate;
-    background-color: var(--bs-dark);
 
     .subtitle {
         margin-bottom: -3dvw;
@@ -174,7 +181,7 @@ section.hero-banner {
 
         &:hover,
         &.hover {
-            background-color: greenyellow;
+            background-color: var(--color-primary);
             color: black;
             backdrop-filter: blur(5px);
             border-radius: 0;
@@ -208,7 +215,7 @@ section.hero-banner {
 
     .text-slider {
         --unshow: rgb(172, 172, 172);
-        --show: greenyellow;
+        --show: var(--color-primary);
         --number-of-line: 6;
 
         width: fit-content;
@@ -545,42 +552,18 @@ section.hero-banner {
         transition: .3s;
         z-index: -1;
     }
-
-    .wivy-arrow-wrapper {
-        --bg-color: var(--bs-secondary);
-        --animation-move-scale: 10px;
-        width: clamp(150px, 40dvw, 500px);
-        background-color: var(--bg-color);
-        mask-image: url('~/assets/images/ui/wivy-arrow.svg');
-        mask-size: 100% 100%;
-        animation: wivy-arrow-move 3s infinite ease-in-out alternate;
-
-        img {
-            width: 100%;
-            opacity: 0;
-        }
-    }
 }
 
-@keyframes wivy-arrow-move {
-    0% {
-        transform: translate(var(--animation-move-scale), var(--animation-move-scale));
-    }
+section.random-photos {
+    min-height: 150dvh;
+    animation: random-photos-section-colored-bg 1s linear;
+    animation-timeline: view();
+}
 
-    25% {
-        transform: translate(calc(-1 * var(--animation-move-scale)), calc(-1 * var(--animation-move-scale)));
-    }
 
-    50% {
-        transform: translate(calc(-1 * var(--animation-move-scale)), var(--animation-move-scale));
-    }
-
-    75% {
-        transform: translate(var(--animation-move-scale), calc(-1 * var(--animation-move-scale)));
-    }
-
-    100% {
-        transform: translate(var(--animation-move-scale), var(--animation-move-scale));
+@keyframes random-photos-section-colored-bg {
+    to {
+        --dynamic-background-color: var(--color-background);
     }
 }
 </style>

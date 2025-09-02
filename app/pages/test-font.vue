@@ -53,7 +53,8 @@ window.addEventListener('resize', () => {
 
 <section class="wrapper d-flex flex-column">
 
-  <span class="font-size-5xl" ref="font5xl">Font 5xl ({{ fontSize5xl }})</span>
+  <span class="font-size-5xl" style="color: dimgrey;" ref="font5xl">Font 5xl ({{ fontSize5xl }})</span>
+  <span style="color: dimgrey;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet minus, a corporis eius ex deserunt saepe modi facilis! Excepturi voluptatum ex reiciendis eos temporibus, dolores illum ducimus sit aperiam assumenda?</span>
   <span class="font-size-4xl" ref="font4xl">Font 4xl ({{ fontSize4xl }})</span>
   <span class="font-size-3xl" ref="font3xl">Font 3xl ({{ fontSize3xl }})</span>
   <span class="font-size-2xl" ref="font2xl">Font 2xl ({{ fontSize2xl }})</span>

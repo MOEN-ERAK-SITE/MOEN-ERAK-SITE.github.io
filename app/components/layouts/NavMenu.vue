@@ -236,6 +236,7 @@ section.nav-menu {
           column-gap: 2rem;
           position: relative;
           isolation: isolate;
+          transition: color 0ms;
 
           &::before {
             content: '';
@@ -254,13 +255,20 @@ section.nav-menu {
             color: var(--bs-dark);
 
             &::before {
-              background-color: greenyellow;
+              background-color: var(--color-primary);
             }
           }
 
           &:hover {
             &:not(.active) {
-              color: greenyellow;
+            --stroke-width: 1.5px;
+            color: black !important;
+            text-shadow:
+              calc(var(--stroke-width)) calc(var(--stroke-width)) 0 var(--color-primary),
+              calc(-1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) 0 var(--color-primary),
+              calc(var(--stroke-width)) calc(-1 * var(--stroke-width)) 0 var(--color-primary),
+              calc(-1 * var(--stroke-width)) calc(var(--stroke-width)) 0 var(--color-primary),
+              calc(2 * var(--stroke-width)) calc(2 * var(--stroke-width)) 2px rgba(172, 255, 47, 0.2);
             }
           }
         }
@@ -272,7 +280,7 @@ section.nav-menu {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: calc(var(--font-size-sm) - .5rem);
-      width: min(50dvh, 100vw);
+      width: min(40dvh, 100vw);
       align-self: center;
 
       .contact-item {
@@ -299,7 +307,7 @@ section.nav-menu {
         }
 
         &:hover {
-          background-color: greenyellow;
+          background-color: var(--color-primary);
 
           * {
             color: black;
@@ -345,7 +353,7 @@ section.nav-menu {
         content: '';
         width: 10px;
         aspect-ratio: 1/1;
-        background-color: greenyellow;
+        background-color: var(--color-primary);
         border-radius: 100%;
         margin-inline: var(--font-size-sm);
       }
